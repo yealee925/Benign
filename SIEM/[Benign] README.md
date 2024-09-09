@@ -43,8 +43,8 @@ The network is divided into three logical segments. It will help in the investig
 4. Input **index=win_eventlogs** in the search field to see all the events
 
    ![image](https://github.com/user-attachments/assets/0972e45c-0b64-455d-bd55-91160dcb400b)
-     - The results show there are 13.959 evemts that were collected during March of 2022
-5. There appears to be an imposter account recorded in the logs. Can find the name of all the Users by inputing **stats count by UserName**
+     - The results show there are 13,959 evemts that were collected during March of 2022
+5. There appears to be an imposter account recorded in the logs. Find the name of all the Users by inputing **stats count by UserName**
 
    ![image](https://github.com/user-attachments/assets/cd5eae7e-36eb-4950-9163-fd68b1e5bc7a)
    ![image](https://github.com/user-attachments/assets/520cd4c5-b060-4306-8d59-c2add05015ae)
@@ -57,27 +57,29 @@ The network is divided into three logical segments. It will help in the investig
 
 ### Steps finding LoLBin
 1. Next let's look into some information about a system process (LOLBin) that was executed to download a payload from a file-sharing host. It's indicated the user who executed the system process was from the HR department
-2. First, let's find the name of the system process used to help find the user who executed the command. Use the HostName field and enter **HostName="HR*"** in the search bar [or can use the UserName field and input **(UserName="haroon" OR "Chris.fort" OR "Daina")**]
+2. First, let's find the name of the system process used to help find the user who executed the command. Use the HostName field and enter **HostName="HR***" in the search bar [or can use the UserName field and input **(UserName="haroon" OR "Chris.fort" OR "Daina")**]
   
-      ![image](https://github.com/user-attachments/assets/520311aa-1fe6-48e1-b05e-9923babc822a)
-3. Select the CommandLine field in the left pane and select **Rare Values** at the top which will open a new search. The search will open in the Visualization section, switch to the **Statistics** section
+   ![image](https://github.com/user-attachments/assets/520311aa-1fe6-48e1-b05e-9923babc822a)
+   ![image](https://github.com/user-attachments/assets/a4a13db2-6671-4bc4-8af1-64dab510fb00)
+
+4. Select the CommandLine field in the left pane and select **Rare Values** at the top which will open a new search. The search will open in the Visualization section, switch to the **Statistics** section
     
    ![image](https://github.com/user-attachments/assets/6e375f3c-77f1-4e9c-b978-2ec0fc366b1d)
    ![image](https://github.com/user-attachments/assets/eb5b1e42-282a-4e6e-bc1b-7e2a1ef32292)
-4. Using this [list](https://lolbas-project.github.io/), search for a command that includes a binary found on the list
+5. Using this [list](https://lolbas-project.github.io/), search for a command that includes a binary found on the list
   
    ![image](https://github.com/user-attachments/assets/c682b113-88cd-478e-a3f5-502898c7dd5d)
    ![image](https://github.com/user-attachments/assets/430ac3e0-c45b-46c8-b44c-8d29aa7d5527)
    - The first command contains *certutil.exe* which functions include downloading files from the Internet
-5. Now that the command was found, click on the command and options will appear. Select **View events** to open a new search that includes the Command in the search bar
+6. Now that the command was found, click on the command and options will appear. Select **View events** to open a new search that includes the Command in the search bar
 
    ![image](https://github.com/user-attachments/assets/b5321851-b292-40d0-bd84-0fe187fa660f)
    ![image](https://github.com/user-attachments/assets/911eeb26-f730-4d9d-ac8b-6d82e34f0ffa)
-6. The results of the search shows more information on the event including the name of user who executed the command
+7. The results of the search shows more information on the event including the name of user who executed the command
 
    ![image](https://github.com/user-attachments/assets/595017b6-2f80-472f-8cc1-5c9e66ecc203)
    - The infected user who executed the command was *haroon*
- 7. The information from the event log also reveals:
+ 8. The information from the event log also reveals:
     - The command was executed on **03/04/2022**
     - The third-party site that was used to download the malicious payload is **controlc.com**
       - The URL that haroon (infected host) connected to was **https://controlc.com/e4d11035**
